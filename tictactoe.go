@@ -15,7 +15,6 @@ const P2 = 'O'
 var board [ROWS * COLUMNS]rune
 
 func load() {
-	// Inicializa o tabuleiro
 
 	position := 0
 
@@ -28,7 +27,6 @@ func load() {
 }
 
 func clearscreen() {
-	// Irá limpar o terminal do jogador para inserção do tabuleiro
 
 	if runtime.GOOS == "windows" {
 		cmd := exec.Command("cmd", "/c", "cls")
@@ -45,17 +43,17 @@ func gameboard() {
 	clearscreen()
 	fmt.Printf("-=-=-=- Tic Tac Toe -=-=-=-\n\n")
 	for i := 0; i < ROWS; i++ {
-		for j := 0; j < COLUMNS; j++ { // inicialização do tabuleiro
+		for j := 0; j < COLUMNS; j++ {
 			if j == 0 {
-				fmt.Printf("\t") // tabulação do tabuleiro
+				fmt.Printf("\t")
 			}
-			fmt.Printf(" %c ", board[ROWS*i+j]) // print do tabuleiro
+			fmt.Printf(" %c ", board[ROWS*i+j])
 			if j < 2 {
-				fmt.Printf(" |") // separação das colunas
+				fmt.Printf(" |")
 			}
 		}
 		if i < 2 {
-			fmt.Printf("\n\t-----------\n") // separação das linhas
+			fmt.Printf("\n\t-----------\n")
 		}
 	}
 	fmt.Printf("\n\n--=-=-=-=-=-=-=-=-=-=-=-=--")
