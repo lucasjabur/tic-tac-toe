@@ -16,11 +16,11 @@ var board [ROWS * COLUMNS]rune
 
 func load() {
 
-	position := 0
+	position := 1
 
 	for i := 0; i < ROWS; i++ {
 		for j := 0; j < COLUMNS; j++ {
-			board[ROWS*i+j] = rune(position)
+			board[ROWS*i+j] = '0' + rune(position)
 			position++
 		}
 	}
@@ -49,7 +49,7 @@ func gameboard() {
 			}
 			fmt.Printf(" %c ", board[ROWS*i+j])
 			if j < 2 {
-				fmt.Printf(" |")
+				fmt.Printf("|")
 			}
 		}
 		if i < 2 {
@@ -69,7 +69,7 @@ func validation(position int) int {
 }
 
 func coordinates(player rune) {
-	fmt.Println("Type a position: ")
+	fmt.Printf("Type a position: ")
 	var position int
 
 	_, err := fmt.Scan(&position)
@@ -79,7 +79,7 @@ func coordinates(player rune) {
 	}
 
 	for validation(position) == 0 {
-		fmt.Println("The position is not valid! Try again: ")
+		fmt.Printf("The position is not valid! Try again: ")
 		var position int
 
 		_, err2 := fmt.Scan(&position)
@@ -125,7 +125,7 @@ func diagonal(player rune) bool {
 
 func victory(player rune) bool {
 	if rows(player) || columns(player) || diagonal(player) {
-		fmt.Println("Victory to the", player, "!")
+		fmt.Printf("Victory to the %c player!\n", player)
 		return true
 	}
 	return false
@@ -139,7 +139,7 @@ func draw() bool {
 		}
 	}
 	if count == 9 {
-		fmt.Println("Uh... It's a draw!")
+		fmt.Printf("Uh... It's a draw!")
 		return true
 	}
 	return false
@@ -162,7 +162,27 @@ func game() {
 	}
 }
 
+func loop() {
+	fmt.Println("Do you want to play again? ('1' to play again, '0' to leave)")
+	var input int
+
+	_, err3 := fmt.Scan(&input)
+	if err3 != nil {
+		fmt.Println("Error: ", err3)
+		return
+	}
+
+	if input == 1 {
+		main()
+	} else {
+		clearscreen()
+		fmt.Println("\nThanks for playing the game!")
+	}
+
+}
+
 func main() {
 	load()
 	game()
+	loop()
 }
