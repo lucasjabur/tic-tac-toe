@@ -176,7 +176,7 @@ func loop() {
 		main()
 	} else {
 		clearscreen()
-		fmt.Println("\nThanks for playing the game!")
+		fmt.Println("Thanks for playing the game!")
 	}
 
 }
